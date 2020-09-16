@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "483700551597",
+    "firebase_url": "https://bravadive.firebaseio.com",
+    "project_id": "bravadive",
+    "storage_bucket": "bravadive.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:483700551597:android:82db83b4331ee4ed7fbb24",
+        "android_client_info": {
+          "package_name": "com.example.bravadive"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "483700551597-fej265t7j83aefeh4jiv8d36vhra5vos.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAM0re5LaHkTUD0yF3S48bLX8EXp7X2BfM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "483700551597-fej265t7j83aefeh4jiv8d36vhra5vos.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

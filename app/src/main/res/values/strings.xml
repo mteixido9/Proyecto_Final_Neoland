@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">BravaDive</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">"AIzaSyAHP5mrHQLWR4uvMLQDhGPxo4L_cQuz9_g"</string>
+</resources>
