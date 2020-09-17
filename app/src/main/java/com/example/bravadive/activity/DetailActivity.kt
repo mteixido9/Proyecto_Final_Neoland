@@ -4,7 +4,9 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import com.example.bravadive.*
+import com.example.bravadive.ViewModel.DetailActivityViewModel
 import com.example.bravadive.adapter.TechnicIconAdapter
 import com.example.bravadive.adapter.ViewPagerAdapter
 import kotlinx.android.synthetic.main.activity_detail.*
@@ -14,6 +16,8 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class DetailActivity : AppCompatActivity() {
+
+    private lateinit var viewModel : DetailActivityViewModel
 
     companion object {
         const val CLAVE_1 = "myClave1"
@@ -28,22 +32,11 @@ class DetailActivity : AppCompatActivity() {
         }
     }
 
-    fun getSpot(spotId: Int): Spot {
-        return App.getDatabase(application).spotDao().loadSpotbyId(spotId)
-    }
-
-    fun getIcons(spotId: Int): List<SpotIcon> {
-        return App.getDatabase(application).spotIconDao().loadSpotIconbyId(spotId)
-    }
-
-    fun getImages(spotId: Int): List<SpotImage> {
-        return App.getDatabase(application).spotImageDao().loadSpotImagebyId(spotId)
-    }
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
+
+        viewModel = ViewModelProvider(this,ViewModelProvider.AndroidViewModelFactory(application)).get(DetailActivityViewModel::class.java)
 
         //Comprovar que esten lo extras y si estan leerlos
         intent.extras.let {
@@ -52,9 +45,9 @@ class DetailActivity : AppCompatActivity() {
 
                     val spotId = intent.getIntExtra(CLAVE_1, 0)
 
-                    val imageList = getImages(spotId)
-                    val iconList = getIcons(spotId)
-                    val spot = getSpot(spotId)
+                    val imageList = viewModel.getImages(spotId)
+                    val iconList = viewModel.getIcons(spotId)
+                    val spot = viewModel.getSpot(spotId)
 
                     withContext(Dispatchers.Main) {
                         val pagerAdapter = ViewPagerAdapter(imageList)
@@ -65,38 +58,10 @@ class DetailActivity : AppCompatActivity() {
 
                         tvSpotName.text = spot.name
                         tvSpottext.text = spot.text
-
                     }
-
-
                 }
             }
-
-
         }
-
-
-        /*val imageList = listOf(
-            R.mipmap.image_test_1,
-            R.mipmap.image_test_2
-        )*/
-
-        /*val iconList= listOf(
-            R.drawable.ic_starfish,
-            R.drawable.ic_beach,
-            R.drawable.ic_boya,
-            R.drawable.ic_consumo_oxigeno,
-            R.drawable.ic_coral,
-            R.drawable.ic_corriente,
-            R.drawable.ic_embarcaciones_frecuentes,
-            R.drawable.ic_luz_de_buceo,
-            R.drawable.ic_nocturna_clean,
-            R.drawable.ic_parada_descompresio,
-
-        )*/
-
         iVLogo.setImageResource(R.mipmap.brava_dive_oval)
-
-
     }
 }

@@ -42,7 +42,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         iVLogo.setImageResource(R.mipmap.brava_dive_oval)
     }
-
     /**
      * Manipulates the map once available.
      * This callback is triggered when the map is ready to be used.
@@ -61,9 +60,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 val markerList = mutableListOf<Marker>()
                 val spotList = App.getDatabase(this@MapsActivity.application).spotDao().getAll()// Leemos spots y añadimos a una lista dsd db.
                 Log.w("Carlos", "El tamano de la lista es ${spotList.size}")
+
                 withContext(Dispatchers.Main){
                     //Leemos todos los spots de db, hacemos un for y creamos un marker para cada spot con su LatLng y titulo. Luego lo añadimos a una lista.
-
                     spotList.forEach {
                         markerList.add(
                             mMap.addMarker(
@@ -72,7 +71,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                             )
                         )
                     }
-
 
                     //Setting map init preferencies
                     mMap.moveCamera(CameraUpdateFactory.newLatLng(markerList[0].position))
@@ -89,6 +87,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                         }
                         true
                     }
+
                 }
             }
         }
